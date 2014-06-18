@@ -6,8 +6,8 @@ class Granny
     until count == 3
       response = gets.chomp
       if response == "BYE"
-        puts "What's that, honey, I didn't hear you.."
         count += 1
+        puts "What's that, honey, I didn't hear you.." unless count == 3
       elsif response != response.upcase
         puts "HUH?! SPEAK UP, SONNY!"
         count = 0
