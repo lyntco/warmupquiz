@@ -3,7 +3,7 @@ require 'pry'
 class Magnitude
 
   def self.say(num)
-    magnitudes = ["trillion","billion","million","thousand"]
+    magnitudes = ["quadrillion","trillion","billion","million","thousand"]
     num = num.to_s
     said = ""
     cut_at = -(magnitudes.length * 3.2).to_i
@@ -21,7 +21,7 @@ class Magnitude
 
 end
 
-Magnitude.say(5599002067890)
+Magnitude.say(59999599002067890)
 
 # class Magnitude
 
