@@ -11,28 +11,24 @@ class Queens
     str = ""
     8.times do |row|
       8.times do |column|
-        if [row, column] == @white || [row, column] == @black
-          if [row, column] == @white
-            str += "W"
-          else
-            str += "B"
-          end
+        if [row, column] == @white
+          str += "W"
+        elsif [row, column] == @black
+          str += "B"
         else
           str += "O"
         end
         str += " " unless column == 7
       end
-      str += "\n"
+      str += "\n" unless row == 7
     end
-    str.chomp
+    str
   end
 
   def attack?
     if same_row || same_column
       true
     elsif on_middle_diagonals
-      true
-    elsif check_other_diagonals
       true
     else
       false
@@ -48,15 +44,26 @@ class Queens
   end
 
   def on_middle_diagonals
-    @white[0] == @white[1] && @black[0] == @black[1]
+    ( @white[0] - @black[0] ) == ( @white[1] - @black[1] )
   end
 
-  def check_other_diagonals
-    if @white == [(@black[0] - 1), (@black[1] - 1) ]
-      true
-    elsif @white == [(@black[0] - 2), (@black[1] - 2) ]
-      true
+  def eight_queens
+    open_rows = (0..7).to_a
+    open_cols = (0..7).to_a
+
+    queens = {}
+
+    ['q1','q2','q3', 'q4', 'q5', 'q6', 'q7', 'q8'].each do |q|
+      queens[q] = []
+      queens[q] << open_rows.unshift
+      queens[q] << open_cols.unshift
     end
+    q_position1 = []
+
+    open_rows -= q1[0]
+    open_cols -= q1[1]
   end
 
 end
+
+Queens.new.eight_queens
